@@ -10,7 +10,7 @@ import io
 def show_tracks(results):
     for i, item in enumerate(tracks['items']):
         track = item['track']
-        print("   %d %32.32s %s" % (i, track['artists'][0]['name'], track['name']))
+        print("   %d %32.32s %s" % (i, track['artists'][0]['name'].encode('ascii', 'ignore'), track['name'].encode('ascii', 'ignore')))
         output_song = track['name'] + ' - ' + track['artists'][0]['name'] + '\n'
         output_song_final = unicode(output_song)
         type(output_song_final)
@@ -40,8 +40,8 @@ if __name__ == '__main__':
         for playlist in playlists['items']:
             if playlist['owner']['id'] == username:
                 print()
-                print(playlist['name'])
-                output_playlist_name = 'P: ' + str(playlist['name']) + '\n'
+                print(playlist['name'].encode('ascii', 'ignore'))
+                output_playlist_name = 'P: ' + str(playlist['name'].encode('ascii', 'ignore')) + '\n'
                 output_playlist_name_utf = unicode(output_playlist_name)
                 output_file.write(output_playlist_name_utf)
                 print('  total tracks', playlist['tracks']['total'])
